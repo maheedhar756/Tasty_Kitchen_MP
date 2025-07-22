@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Eye, EyeOff, ChefHat } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 import Cookies from 'js-cookie'
 
 const Login = () => {
@@ -40,34 +40,44 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left side - Food Image */}
-      <div className="w-1/2 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col md:flex-row">
+      {/* Left side - Food Image (Desktop) / Top section (Mobile) */}
+      <div className="w-full md:w-1/2 h-64 md:h-full relative overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
+        {/* DESKTOP FOOD IMAGE - Replace with your desktop food image URL */}
         <img
           src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800"
           alt="Delicious food"
-          className="w-full h-full object-cover"
+          className="hidden md:block w-full h-full object-cover"
+        />
+        {/* MOBILE FOOD IMAGE - Replace with your mobile food image URL */}
+        <img
+          src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400"
+          alt="Delicious food"
+          className="block md:hidden w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent z-20"></div>
       </div>
 
-      {/* Right side - Login Form */}
-      <div className="w-1/2 flex justify-center items-center bg-white">
-        <div className="w-full max-w-sm px-8">
+      {/* Right side - Login Form (Desktop) / Bottom section (Mobile) */}
+      <div className="w-full md:w-1/2 flex justify-center items-center bg-white py-8 md:py-0">
+        <div className="w-full max-w-sm px-8 md:px-8">
           {/* Logo */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 mb-2">
-              <ChefHat className="w-8 h-8 text-orange-500" />
-              <span className="text-orange-500 font-semibold text-lg">Tasty Kitchens</span>
-            </div>
+            {/* LOGO IMAGE - Your Cloudinary logo is already set in index.html, use it here */}
+            <img
+              src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1752939362/tasty_logo_vzfnv1.png"
+              alt="Tasty Kitchens Logo"
+              className="w-16 h-16 mx-auto mb-2"
+            />
+            <span className="text-orange-500 font-semibold text-lg">Tasty Kitchens</span>
           </div>
 
           {/* Login Heading */}
-          <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Login</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 md:mb-8 text-center">Login</h1>
 
           {/* Login Form */}
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-4 md:space-y-6">
             {/* Username Field */}
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-600 mb-2 uppercase tracking-wide">
@@ -78,7 +88,7 @@ const Login = () => {
                 type="text"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full px-4 py-2 md:py-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                 required
               />
             </div>
@@ -94,7 +104,7 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full px-4 py-2 md:py-3 pr-12 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                   required
                 />
                 <button
@@ -115,7 +125,7 @@ const Login = () => {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 md:py-3 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 text-sm md:text-base"
             >
               Login
             </button>
