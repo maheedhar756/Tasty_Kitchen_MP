@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { Eye, EyeOff, ChefHat } from 'lucide-react'
 import Cookies from 'js-cookie'
 
 const Login = () => {
@@ -41,15 +41,24 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left side - Login Form */}
+      {/* Left side - Food Image */}
+      <div className="w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
+        <img
+          src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800"
+          alt="Delicious food"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent z-20"></div>
+      </div>
+
+      {/* Right side - Login Form */}
       <div className="w-1/2 flex justify-center items-center bg-white">
         <div className="w-full max-w-sm px-8">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">🍽️</span>
-              </div>
+              <ChefHat className="w-8 h-8 text-orange-500" />
               <span className="text-orange-500 font-semibold text-lg">Tasty Kitchens</span>
             </div>
           </div>
@@ -93,7 +102,7 @@ const Login = () => {
                   onClick={togglePasswordVisibility}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
                 >
-                  {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
@@ -112,17 +121,6 @@ const Login = () => {
             </button>
           </form>
         </div>
-      </div>
-
-      {/* Right side - Food Image */}
-      <div className="w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
-        <img
-          src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800"
-          alt="Delicious food"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent z-20"></div>
       </div>
     </div>
   )
