@@ -6,7 +6,7 @@ const RestaurantDetails = () => {
     <>
       <Navbar />
       <div className="p-4">
-        {/* Fetch restaurant data using restaurant ID and display food items */}
+        Restaurant Details
       </div>
     </>
   )

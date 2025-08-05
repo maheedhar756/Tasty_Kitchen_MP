@@ -51,37 +51,64 @@ const Login = () => {
   };
 
   return(
-    <div className="login-container">
-      <form className="login-form" onSubmit={submitForm}>
-        <h1 className="login-heading">Login</h1>
-        <label htmlFor="username" className="login-label">Username</label>
-        <input
-          type="text"
-          id="username"
-          className="login-input"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
+    <div className="flex flex-col lg:flex-row h-screen items-center justify-center">
+      <div className="hidden lg:block lg:w-1/2 h-full">
+        <img
+          src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1753196312/login_image_t58qdc.jpg"
+          alt="Login background"
+          className="w-full h-full object-cover"
         />
-        <label htmlFor="password" className="login-label">Password</label>
-        <div className="password-input-container">
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            className="login-input"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
+      </div>
+
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4">
+        <form className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm" onSubmit={submitForm}>
+          <img
+          src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1754365256/tasty_logo_elrolb.svg"
+          alt="Login background"
+          className="mx-auto mb-4 object-cover"
           />
-          {showPassword ? (
-            <EyeOff onClick={() => setShowPassword(false)} className="toggle-password-icon" />
-          ) : (
-            <Eye onClick={() => setShowPassword(true)} className="toggle-password-icon" />
-          )}
-        </div>
-        {showSubmitError && <p className="error-message">{errorMsg}</p>}
-        <button type="submit" className="login-button">Login</button>
-      </form>
+          <h1 className="text-3xl font-bold text-center mb-6 text-[#F7931E] italic">Tasty Kitchens</h1>
+          <h1 className="text-3xl font-bold text-center mb-6 text-[#0F172A]">Login</h1>
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-sm font-bold mb-2">Username</label>
+            <input
+              type="text"
+              id="username"
+              className="appearance-none border rounded w-full py-2 px-3 text-[#475569] leading-tight focus:outline-none focus:shadow-outline"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-[#171F46] text-sm font-bold mb-2">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-[#475569] mb-3 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
+              <span onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3 pb-3 flex items-center cursor-pointer">
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5 text-gray-500" />
+                ) : (
+                  <Eye className="h-5 w-5 text-gray-500" />
+                )}
+              </span>
+            </div>
+            {showSubmitError && <p className="text-red-500 text-xs italic">{errorMsg}</p>}
+          </div>
+          <button
+            type="submit"
+            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

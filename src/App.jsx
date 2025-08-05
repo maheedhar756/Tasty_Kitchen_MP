@@ -13,11 +13,9 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/restaurant/:id" element={<RestaurantDetails />} />
-        </Route>
+      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+      <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+      <Route path="/restaurant/:id" element={<ProtectedRoute><RestaurantDetails /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
