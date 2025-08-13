@@ -1,32 +1,59 @@
 import { useState, useEffect } from 'react'
 import Slider from 'react-slick'
 import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 const OffersCarousel = () => {
   const [offers, setOffers] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchOffers = async () => {
       try {
         const jwtToken = Cookies.get('jwt_token')
+        console.log('JWT Token:', jwtToken ? 'Token exists' : 'No token found')
+        
+        if (!jwtToken) {
+          console.log('No JWT token found, redirecting to login')
+          navigate('/login')
+          return
+        }
+
+        const jwtToken = Cookies.get('jwt_token')
         const response = await fetch('https://apis.ccbp.in/restaurants-list/offers', {
           headers:{
             Authorization: `Bearer ${jwtToken}`
-          }
+        const response = await fetch('https://apis.ccbp.in/restaurants-list/offers', {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
         })
+        
+        })
+        
+        if (response.status === 401) {
+          console.log('Token expired or invalid, redirecting to login')
+          Cookies.remove('jwt_token')
+          navigate('/login')
+          return
+        }
+        
         const data = await response.json()
         setOffers(data.offers || [])
         setLoading(false)
       } catch (error) {
         console.error('Error fetching offers:', error)
+        setError('Failed to load offers')
         setLoading(false)
       }
     }
     fetchOffers()
-  }, [])
+  }, [navigate])
 
   const settings = {
     dots: true,
@@ -58,6 +85,13 @@ const OffersCarousel = () => {
     )
   }
 
+  if (error) {
+    return (
+      <div className="w-full h-64 bg-red-50 border border-red-200 rounded-lg mb-8 flex items-center justify-center">
+        <div className="text-red-600">{error}</div>
+      </div>
+    )
+  }
   return (
     <div className="w-full mb-8 px-4">
       <Slider {...settings}>
@@ -84,3 +118,5 @@ const OffersCarousel = () => {
 }
 
 export default OffersCarousel
+      <div className="w-full h-64 bg-gray-50 border border-gray-200 rounded-lg mb-8 flex items-center justify-center">
+        <div className="text-gray-600">No offers available at the moment</div>
