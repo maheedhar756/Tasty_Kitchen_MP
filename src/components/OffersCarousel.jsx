@@ -11,16 +11,13 @@ const OffersCarousel = () => {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        console.log('Fetching offers...')
         const jwtToken = Cookies.get('jwt_token')
         const response = await fetch('https://apis.ccbp.in/restaurants-list/offers', {
-          headers: {
-            Authorization: `Bearer ${jwtToken}`,
-          },
+          headers:{
+            Authorization: `Bearer ${jwtToken}`
+          }
         })
-        console.log('Response status:', response.status)
         const data = await response.json()
-        console.log('API Response:', data)
         setOffers(data.offers || [])
         setLoading(false)
       } catch (error) {
@@ -28,7 +25,6 @@ const OffersCarousel = () => {
         setLoading(false)
       }
     }
-
     fetchOffers()
   }, [])
 
@@ -54,21 +50,10 @@ const OffersCarousel = () => {
     ]
   }
 
-  console.log('Current offers state:', offers)
-  console.log('Loading state:', loading)
-
   if (loading) {
     return (
       <div className="w-full h-64 bg-gray-200 animate-pulse rounded-lg mb-8 flex items-center justify-center">
         <div className="text-gray-500">Loading offers...</div>
-      </div>
-    )
-  }
-
-  if (!offers || offers.length === 0) {
-    return (
-      <div className="w-full h-64 bg-gray-100 rounded-lg mb-8 flex items-center justify-center">
-        <div className="text-gray-500">No offers available</div>
       </div>
     )
   }
