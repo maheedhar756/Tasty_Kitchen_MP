@@ -12,7 +12,7 @@ const OffersCarousel = () => {
       try {
         const response = await fetch('https://apis.ccbp.in/restaurants-list/offers')
         const data = await response.json()
-        setOffers(data.offers)
+        setOffers(data.offers || [])
         setLoading(false)
       } catch (error) {
         console.error('Error fetching offers:', error)
