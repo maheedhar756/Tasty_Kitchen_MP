@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Slider from 'react-slick'
+import Cookies from 'js-cookie'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -11,7 +12,12 @@ const OffersCarousel = () => {
     const fetchOffers = async () => {
       try {
         console.log('Fetching offers...')
-        const response = await fetch('https://apis.ccbp.in/restaurants-list/offers')
+        const jwtToken = Cookies.get('jwt_token')
+        const response = await fetch('https://apis.ccbp.in/restaurants-list/offers', {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        })
         console.log('Response status:', response.status)
         const data = await response.json()
         console.log('API Response:', data)
@@ -22,7 +28,6 @@ const OffersCarousel = () => {
         setLoading(false)
       }
     }
-    
 
     fetchOffers()
   }, [])
