@@ -28,13 +28,14 @@ const OffersCarousel = () => {
         const response = await fetch('https://apis.ccbp.in/restaurants-list/offers', {
           headers:{
             Authorization: `Bearer ${jwtToken}`
+          },
+        })
         const response = await fetch('https://apis.ccbp.in/restaurants-list/offers', {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
           },
         })
         
-        })
         
         if (response.status === 401) {
           console.log('Token expired or invalid, redirecting to login')
@@ -120,3 +121,4 @@ const OffersCarousel = () => {
 export default OffersCarousel
       <div className="w-full h-64 bg-gray-50 border border-gray-200 rounded-lg mb-8 flex items-center justify-center">
         <div className="text-gray-600">No offers available at the moment</div>
+      </div>
