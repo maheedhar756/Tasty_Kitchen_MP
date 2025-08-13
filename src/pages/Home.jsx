@@ -1,11 +1,14 @@
 import Navbar from '../components/Navbar'
-// import Loader from '../components/Loader'
+import OffersCarousel from '../components/offerscarousel'
 
 const Home = () => {
   return (
     <>
       <Navbar />
+      <div className="container mx-auto px-4 py-8">
+        <OffersCarousel />
         <h1 className="text-2xl font-bold">Popular Restaurants</h1>
+      </div>
     </>
   )
 }

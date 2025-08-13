@@ -10,12 +10,15 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-[#F8FAFC]">
-      <Link to="/" className="text-xl font-bold text-red-500">TASTY KITCHENS</Link>
+    <nav className="flex items-center justify-between p-4 bg-[#F8FAFC] p">
+      <Link to="/" className="text-xl font-bold text-[#F7931E] italic flex items-center gap-3">
+        <img src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1754365256/tasty_logo_elrolb.svg" alt="logo" />
+        Tasty Kitchens
+      </Link>
       <div className="flex gap-4">
-        <Link to="/" className="hover:text-red-500">Home</Link>
-        <Link to="/cart" className="hover:text-red-500">Cart</Link>
-        <button onClick={handleLogout} className="text-white bg-red-500 px-3 py-1 rounded">Logout</button>
+        <Link to="/" className="hover:text-[#F7931E]">Home</Link>
+        <Link to="/cart" className="hover:text-[#F7931E]">Cart</Link>
+        <button onClick={handleLogout} className="text-white bg-[#F7931E] px-3 py-1 rounded">Logout</button>
       </div>
     </nav>
   )
