@@ -2,3 +2,27 @@
 body{
   font-family: DM Sans;
 }
+
+/* Custom styles for slick carousel */
+.slick-dots {
+  bottom: 20px;
+}
+
+.slick-dots li button:before {
+  color: white;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #F7931E;
+  opacity: 1;
+}
+
+.slick-slide {
+  padding: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
