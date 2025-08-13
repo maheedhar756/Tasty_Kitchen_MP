@@ -10,7 +10,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="flex items-center justify-between p-4 shadow-md">
+    <nav className="flex items-center justify-between p-4 bg-[#F8FAFC]">
       <Link to="/" className="text-xl font-bold text-red-500">TASTY KITCHENS</Link>
       <div className="flex gap-4">
         <Link to="/" className="hover:text-red-500">Home</Link>

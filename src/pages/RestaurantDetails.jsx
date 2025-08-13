@@ -1,5 +1,4 @@
 import Navbar from '../components/Navbar'
-import Loader from '../components/Loader'
 
 const RestaurantDetails = () => {
   return (
