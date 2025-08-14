@@ -18,7 +18,7 @@ const OffersCarousel = () => {
           },
         })
         const data = await response.json()
-        console.log('API Response:', data)
+        // console.log('API Response:', data)
         setOffers(data.offers || [])
         // setLoading(false)
       } catch (error) {
@@ -37,7 +37,7 @@ const OffersCarousel = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2500,
     pauseOnHover: true,
     pauseOnFocus: true,
     arrows: false,
@@ -81,8 +81,6 @@ const OffersCarousel = () => {
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h3 className="text-2xl md:text-4xl mb-2">ezgegrzgg</h3>
-                  <p className="text-lg md:text-xl">rsssegt</p>
                 </div>
               </div>
             </div>
