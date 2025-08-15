@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar'
 
-const Cart = () => {
+export default function Cart() {
   return (
     <>
       <Navbar />
@@ -8,5 +8,3 @@ const Cart = () => {
     </>
   )
 }
-
-export default Cart

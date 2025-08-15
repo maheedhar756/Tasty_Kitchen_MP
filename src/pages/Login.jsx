@@ -3,7 +3,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Eye, EyeOff } from "lucide-react";
 
-const Login = () => {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -63,9 +63,9 @@ const Login = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-4">
         <form className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm" onSubmit={submitForm}>
           <img
-          src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1754365256/tasty_logo_elrolb.svg"
-          alt="Login background"
-          className="mx-auto mb-4 object-cover"
+            src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1754365256/tasty_logo_elrolb.svg"
+            alt="Login background"
+            className="mx-auto mb-4 object-cover"
           />
           <h1 className="text-3xl font-bold text-center mb-6 text-[#F7931E] italic">Tasty Kitchens</h1>
           <h1 className="text-3xl font-bold text-center mb-6 text-[#0F172A]">Login</h1>
@@ -112,5 +112,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;

@@ -15,7 +15,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
-      <Route path="/restaurant/:id" element={<ProtectedRoute><RestaurantDetails /></ProtectedRoute>} />
+      <Route path="/restaurant-list/:id" element={<ProtectedRoute><RestaurantDetails /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
