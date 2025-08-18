@@ -10,7 +10,7 @@ const Home = () => {
   // const [loading, setLoading] = useState(true)
   const [activePage, setActivePage] = useState(1)
   const limit = 9 // Number of restaurants per page
-  const totalRestaurants = 30
+  const totalRestaurants = 29
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -37,13 +37,13 @@ const Home = () => {
 
   const handleNextPage = () => {
     if (activePage * limit < totalRestaurants) {
-      setActivePage((prevPage) => prevPage + 1)
+      setActivePage(prevPage => prevPage + 1)
     }
   }
 
   const handlePrevPage = () => {
     if (activePage > 1) {
-      setActivePage((prevPage) => prevPage - 1)
+      setActivePage(prevPage => prevPage - 1)
     }
   }
 
@@ -67,19 +67,18 @@ const Home = () => {
             <h1 className="text-2xl font-bold text-[#183B56]">Popular Restaurants</h1>
             <p className="text-[#64748B]">Select Your favourite restaurant special dish and make your day happy...</p>
           </div>
-          {/* Sorting functionality can be added here */}
-          {/* <select> ... </select> */}
+          {/* filter option */}
         </div>
         {renderRestaurants()}
 
         <div className="flex items-center justify-center mt-8 space-x-4">
-          <button onClick={handlePrevPage} disabled={activePage === 1} className="px-3 py-1 border rounded disabled:opacity-50">
+          <button onClick={handlePrevPage}  className="px-3 py-1 border rounded disabled:opacity-50">
             &lt;
           </button>
           <span className="font-semibold">
             {activePage} of {Math.ceil(totalRestaurants / limit)}
           </span>
-          <button onClick={handleNextPage} disabled={activePage * limit >= totalRestaurants} className="px-3 py-1 border rounded disabled:opacity-50">
+          <button onClick={handleNextPage} className="px-3 py-1 border rounded disabled:opacity-50">
             &gt;
           </button>
         </div>
