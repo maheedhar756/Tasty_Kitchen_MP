@@ -52,14 +52,6 @@ const OffersCarousel = () => {
     ]
   }
 
-  // if (loading) {
-  //   return (
-  //     <div className="w-full h-64 bg-gray-200 animate-pulse rounded-lg mb-8 flex items-center justify-center">
-  //       <div className="text-gray-500">Loading offers...</div>
-  //     </div>
-  //   )
-  // }
-
   if (!offers || offers.length === 0) {
     return (
       <div className="w-full h-64 bg-gray-100 rounded-lg mb-8 flex items-center justify-center">
@@ -79,10 +71,10 @@ const OffersCarousel = () => {
                 alt={`Offer ${offer.id}`}
                 className="w-full h-full object-cover"
               />
-              {/* <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
                 <div className="text-center text-white">
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         ))}

@@ -42,10 +42,7 @@ const RestaurantDetails = () => {
   if (loading) {
     return (
       <>
-        <Navbar />
-        <div className="flex items-center justify-center h-screen">
-          <Loader />
-        </div>
+        
       </>
     )
   }

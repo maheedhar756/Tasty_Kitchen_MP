@@ -24,3 +24,9 @@ body{
 .slick-list {
   margin: 0 -10px;
 }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* keep bg white */
+  -webkit-text-fill-color: black !important; /* text stays normal */
+  caret-color: black;
+}
