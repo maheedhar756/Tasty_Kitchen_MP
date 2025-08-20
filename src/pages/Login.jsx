@@ -54,14 +54,11 @@ export default function Login() {
     <div className="h-screen w-full flex items-center justify-center">
       {/* Mobile view */}
       <div className="relative flex flex-col md:hidden w-full h-screen items-center justify-center bg-gray-100">
-        {/* Background Image */}
         <img
           src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1753196312/login_image_t58qdc.jpg"
           alt="Food"
           className="absolute inset-0 w-full h-full object-cover"
         />
-
-        {/* Login Card */}
         <div 
           className="relative z-10 w-auto p-6 rounded-2xl shadow-xl bg-white/20 backdrop-blur-xs border border-white/60">
           <h2 className="text-xl font-bold text-[#BB2000] mb-6 text-center">Login</h2>
@@ -141,7 +138,7 @@ export default function Login() {
               className="mx-auto mb-4 object-cover"
             />
             <h1 className="text-3xl font-bold text-center mb-6 text-[#F7931E] italic">Tasty Kitchens</h1>
-            <h1 className="text-3xl font-bold text-center mb-6 text-[#0F172A]">Login</h1>
+            <h1 className="text-3xl font-bold text-center mb-6 text-[#BB2000]">Login</h1>
             <div className="mb-4">
               <label
                 htmlFor="username"
@@ -153,7 +150,7 @@ export default function Login() {
                 type="text"
                 id="Username"
                 placeholder="Enter username"
-                className="appearance-none border rounded w-full py-2 px-3 text-[#475569] leading-tight focus:outline-none focus:shadow-outline"
+                className="border rounded-lg px-3 py-2 text-sm w-full focus:border-none focus:outline-none focus:ring-1 focus:ring-[#F7931E]"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
@@ -171,14 +168,14 @@ export default function Login() {
                   type={showPassword ? "text" : "password"}
                   id="Password"
                   placeholder="Enter password"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-[#475569] mb-3 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                  className="border rounded-lg px-3 py-2 text-sm w-full focus:border-none focus:outline-none focus:ring-1 focus:ring-[#F7931E]"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 pb-3 flex items-center cursor-pointer"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
                 >
                   {showPassword ? (
                     <EyeOff className="h-5 w-5 text-gray-500" />

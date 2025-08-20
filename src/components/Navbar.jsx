@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
+import { FiMenu } from 'react-icons/fi'
+import { IoMdClose } from 'react-icons/io'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,8 +15,8 @@ export default function Navbar() {
 
   return (
     <nav className="bg-[#F8FAFC] shadow-md">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center py-3">
+      <div className="max-w-auto">
+        <div className="flex justify-between items-center px-20 py-3">
           {/* Logo */}
           <Link
             to="/"
@@ -29,16 +31,16 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 pr-2">
             <Link
               to="/"
-              className="text-lg font-semibold hover:text-[#F7931E]"
+              className="text-lg font-medium hover:text-[#F7931E]"
             >
               Home
             </Link>
             <Link
               to="/cart"
-              className="text-lg font-semibold hover:text-[#F7931E]"
+              className="text-lg font-medium hover:text-[#F7931E]"
             >
               Cart
             </Link>
@@ -47,12 +49,11 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-2xl text-[#1e293b] focus:outline-none"
           >
-            {isOpen ? "✖" : "☰"}
+            {isOpen ? <IoMdClose /> : <FiMenu />}
           </button>
         </div>
       </div>

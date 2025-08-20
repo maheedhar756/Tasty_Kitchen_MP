@@ -10,16 +10,16 @@ export default function Footer() {
         </div>
 
         <div class="flex space-x-5">
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+          <a href="https://www.pinterest.com/ideas/tasty-kitchen/935151953066/" target="_blank" className="text-gray-400 hover:text-white transition-colors duration-300">
             <img src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1755165704/pinterest_ngqceq.svg" alt="pinterest" />
           </a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+          <a href="https://www.instagram.com/tastykitchengardena/" target="_blank" className="text-gray-400 hover:text-white transition-colors duration-300">
             <img src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1755165704/insta_msz2ro.svg" alt="instagram" />
           </a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+          <a href="https://x.com/tastykitchen" className="text-gray-400 hover:text-white transition-colors duration-300">
             <img src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1755165704/twitter_yimxq7.svg" alt="twitter" />
           </a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+          <a href="https://www.facebook.com/atastykitchen/" target="_blank" className="text-gray-400 hover:text-white transition-colors duration-300">
             <img src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1755165704/fb_bt09pi.svg" alt="facebook" />
           </a>
         </div>

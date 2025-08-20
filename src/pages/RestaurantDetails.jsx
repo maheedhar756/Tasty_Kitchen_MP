@@ -61,9 +61,8 @@ const RestaurantDetails = () => {
   return (
     <>
       <Navbar />
-      <div className=" md:p-8">
-        <div className="bg-[url(https://res.cloudinary.com/dzyaesd9l/image/upload/v1755492611/restarBG_ugomzo.svg)] flex flex-col md:flex-row items-center md:items-start rounded-lg p-6">
-          <img src={image_url} alt={name} className="w-full md:w-1/3 h-64 md:h-auto object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
+        <div className="bg-[url(https://res.cloudinary.com/dzyaesd9l/image/upload/v1755492611/restarBG_ugomzo.svg)] flex flex-col md:flex-row items-center md:items-start h-auto w-auto p-6 pl-40 bg-no-repeat">
+          <img src={image_url} alt={name} className="w-full h-10 md:w-1/3 md:h-auto object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
           <div className="text-center pt-6 md:text-left">
             <h1 className="text-3xl font-bold text-white">{name}</h1>
             <p className="text-white mt-2">{cuisine}</p>
@@ -80,6 +79,8 @@ const RestaurantDetails = () => {
             </div>
           </div>
         </div>
+
+        <div className="md:p-6">
 
         <div className="mt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
