@@ -1,107 +1,16 @@
-import { createContext, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import { useCart } from '../context/CartContext'
 
-const CartContext = createContext();
-
-const useCart = () => {
-  return useContext(CartContext);
-};
-
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const addItemToCart = (item) => {
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
-
-      if (existingItem) {
-        return prevItems.map(cartItem =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      } else {
-        return [...prevItems, { ...item, quantity: 1 }];
-      }
-    });
-  };
-
-  const incrementItemQuantity = (itemId) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
-  };
-
-  const decrementItemQuantity = (itemId) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      ).filter(item => item.quantity > 0)
-    );
-  };
-
-  const calculateOrderTotal = () => {
-    return cartItems.reduce((total, item) => total + (item.cost * item.quantity), 0);
-  };
-
-  return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        addItemToCart,
-        incrementItemQuantity,
-        decrementItemQuantity,
-        calculateOrderTotal,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
-};
-
-const CartPage = () => {
-  const navigate = useNavigate();
+const Cart = () => {
   const { cartItems, incrementItemQuantity, decrementItemQuantity, calculateOrderTotal } = useCart();
 
   const handlePlaceOrder = () => {
     // dummy
   };
 
-  // Dummy Navbar and Footer components for demonstration
-  const Navbar = () => (
-    <nav className="flex items-center justify-between p-4 bg-white shadow-md">
-      <h1 className="text-2xl font-bold text-orange-500 italic">Tasty Kitchens</h1>
-      <div className="flex space-x-4">
-        <button onClick={() => navigate('/')} className="text-gray-700 hover:text-orange-500">Home</button>
-        <button onClick={() => navigate('/cart')} className="text-gray-700 hover:text-orange-500">Cart</button>
-        <button className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">Logout</button>
-      </div>
-    </nav>
-  );
-
-  const Footer = () => (
-    <footer className="bg-gray-800 text-white p-6 text-center mt-8">
-      <p className="text-xl font-bold">Tasty Kitchens</p>
-      <p className="mt-2">The only thing we are serious about is food.</p>
-      <p className="mt-1">Contact us on</p>
-      <div className="flex justify-center space-x-4 mt-4">
-        {/* Dummy social icons */}
-        <span className="text-2xl">P</span>
-        <span className="text-2xl">I</span>
-        <span className="text-2xl">T</span>
-        <span className="text-2xl">F</span>
-      </div>
-    </footer>
-  );
-
   return (
-    // Wrap the entire content with CartProvider to make the context available
-    <CartProvider>
+    <>
       <Navbar />
       <div className="container mx-auto p-4 md:p-8 min-h-screen">
         <h2 className="text-3xl font-bold mb-6 text-center">Your Cart</h2>
@@ -158,8 +67,8 @@ const CartPage = () => {
         )}
       </div>
       <Footer />
-    </CartProvider>
+    </>
   );
 };
 
-export default CartPage;
+export default Cart;

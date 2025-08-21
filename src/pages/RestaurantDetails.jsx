@@ -1,74 +1,10 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Navbar from '../components/Navbar'
 import { FaStar } from "react-icons/fa"
 import Footer from '../components/Footer'
-import Cart from './Cart'
-
-const CartContext = createContext()
-
-const useCart = () => {
-  return useContext(CartContext)
-}
-
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-
-  const addItemToCart = (item) => {
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
-
-      if (existingItem) {
-        return prevItems.map(cartItem =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      } else {
-        return [...prevItems, { ...item, quantity: 1 }];
-      }
-    });
-  };
-
-  const incrementItemQuantity = (itemId) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
-  };
-
-  const decrementItemQuantity = (itemId) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      ).filter(item => item.quantity > 0)
-    );
-  };
-
-  const calculateOrderTotal = () => {
-    return cartItems.reduce((total, item) => total + (item.cost * item.quantity), 0);
-  };
-
-  return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        addItemToCart,
-        incrementItemQuantity,
-        decrementItemQuantity,
-        calculateOrderTotal,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
-};
+import { useCart } from '../context/CartContext'
 
 const RestaurantDetails = () => {
   const { restrauntId } = useParams()
@@ -136,7 +72,7 @@ const RestaurantDetails = () => {
   const {name, cuisine, location, rating, reviews_count, cost_for_two, image_url, food_items} = restaurantData
 
   return (
-    <CartProvider>
+    <>
       <Navbar />
         <div className="bg-[url(https://res.cloudinary.com/dzyaesd9l/image/upload/v1755492611/restarBG_ugomzo.svg)] flex flex-col md:flex-row items-center md:items-start h-auto w-auto p-6 pl-40 bg-no-repeat">
           <img src={image_url} alt={name} className="w-full h-10 md:w-1/3 md:h-auto object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
@@ -201,7 +137,7 @@ const RestaurantDetails = () => {
           </div>
         </div>
       <Footer />
-    </CartProvider>
+    </>
   )
 }
 
