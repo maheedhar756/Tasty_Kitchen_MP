@@ -1,15 +1,80 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Navbar from '../components/Navbar'
 import { FaStar } from "react-icons/fa"
 import Footer from '../components/Footer'
+import Cart from './Cart'
 
+const CartContext = createContext()
+
+const useCart = () => {
+  return useContext(CartContext)
+}
+
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addItemToCart = (item) => {
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
+
+      if (existingItem) {
+        return prevItems.map(cartItem =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      } else {
+        return [...prevItems, { ...item, quantity: 1 }];
+      }
+    });
+  };
+
+  const incrementItemQuantity = (itemId) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  const decrementItemQuantity = (itemId) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      ).filter(item => item.quantity > 0)
+    );
+  };
+
+  const calculateOrderTotal = () => {
+    return cartItems.reduce((total, item) => total + (item.cost * item.quantity), 0);
+  };
+
+  return (
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addItemToCart,
+        incrementItemQuantity,
+        decrementItemQuantity,
+        calculateOrderTotal,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
 
 const RestaurantDetails = () => {
   const { restrauntId } = useParams()
   const [restaurantData, setRestaurantData] = useState(null)
   const [loading, setLoading] = useState(true)
+  const {cartItems, addItemToCart, incrementItemQuantity, decrementItemQuantity} = useCart()
 
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
@@ -39,6 +104,18 @@ const RestaurantDetails = () => {
     fetchRestaurantDetails()
   }, [restrauntId])
 
+  const handleInitialAddToCart = (item) => {
+    addItemToCart(item);
+  }
+
+  const handleIncrement = (item) => {
+    incrementItemQuantity(item.id);
+  }
+
+  const handleDecrement = (item) => {
+    decrementItemQuantity(item.id);
+  };
+
   if (loading) {
     return (
       <>
@@ -59,7 +136,7 @@ const RestaurantDetails = () => {
   const {name, cuisine, location, rating, reviews_count, cost_for_two, image_url, food_items} = restaurantData
 
   return (
-    <>
+    <CartProvider>
       <Navbar />
         <div className="bg-[url(https://res.cloudinary.com/dzyaesd9l/image/upload/v1755492611/restarBG_ugomzo.svg)] flex flex-col md:flex-row items-center md:items-start h-auto w-auto p-6 pl-40 bg-no-repeat">
           <img src={image_url} alt={name} className="w-full h-10 md:w-1/3 md:h-auto object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
@@ -81,23 +158,50 @@ const RestaurantDetails = () => {
         </div>
 
         <div className="md:p-6">
-
-        <div className="mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {food_items.map(item => (
-              <div key={item.id} className="p-4 rounded-lg flex items-center shadow-md">
-                <img src={item.image_url} alt={item.name} className="w-20 h-20 object-cover rounded-lg mr-4" />
-                <div>
-                  <h3 className="font-bold text-[#183B56]">{item.name}</h3>
-                  <p className="text-gray-600">₹{item.cost}</p>
-                </div>
-              </div>
-            ))}
+          <div className="mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {food_items.map(item => {
+                const itemInCart = cartItems.find(cartItem => cartItem.id === item.id);
+                const currentQuantity = itemInCart ? itemInCart.quantity : 0;
+                return(
+                  <div key={item.id} className="p-4 rounded-lg flex items-center shadow-md">
+                    <img src={item.image_url} alt={item.name} className="w-20 h-20 object-cover rounded-lg mr-4" />
+                    <div>
+                      <h3 className="font-bold text-[#183B56]">{item.name}</h3>
+                      <p className="text-gray-600">₹{item.cost}</p>
+                        {currentQuantity === 0 ? (
+                          <button
+                            onClick={() => handleInitialAddToCart(item)}
+                            className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded-md focus:outline-none focus:shadow-outline"
+                          >
+                            Add to Cart
+                          </button>
+                        ) : (
+                        <div className="flex items-center mt-2">
+                          <button
+                            onClick={() => handleDecrement(item)}
+                            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-l-md hover:bg-gray-300 focus:outline-none">
+                            -
+                          </button>
+                          <span className="bg-gray-100 text-gray-800 px-4 py-1 border-t border-b border-gray-300">
+                            {currentQuantity}
+                          </span>
+                          <button
+                            onClick={() => handleIncrement(item)}
+                            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-r-md hover:bg-gray-300 focus:outline-none">
+                            +
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
       <Footer />
-    </>
+    </CartProvider>
   )
 }
 
