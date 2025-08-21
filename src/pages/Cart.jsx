@@ -3,6 +3,13 @@ import Footer from '../components/Footer'
 import { useCart } from '../context/CartContext'
 
 const Cart = () => {
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import { useCart } from '../context/CartContext'
+
+const CartPage = () => {
+  const navigate = useNavigate();
   const { cartItems, incrementItemQuantity, decrementItemQuantity, calculateOrderTotal } = useCart();
 
   const handlePlaceOrder = () => {
