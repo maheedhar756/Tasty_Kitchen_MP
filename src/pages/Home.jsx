@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import Navbar from '../components/Navbar'
-import OffersCarousel from '../components/offerscarousel'
+import OffersCarousel from '../components/OffersCarousel'
 import RestaurantCards from '../components/RestaurantCards'
 import Footer from '../components/Footer'
 
