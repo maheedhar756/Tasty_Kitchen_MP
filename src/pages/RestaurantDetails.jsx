@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import { FaStar } from "react-icons/fa"
 import Footer from '../components/Footer'
 import { useCart } from '../context/CartContext'
+import Loader from '../components/Loader'
 
 const RestaurantDetails = () => {
   const { restrauntId } = useParams()
@@ -54,9 +55,7 @@ const RestaurantDetails = () => {
 
   if (loading) {
     return (
-      <>
-        
-      </>
+        <Loader />
     )
   }
   
@@ -108,7 +107,7 @@ const RestaurantDetails = () => {
                         {currentQuantity === 0 ? (
                           <button
                             onClick={() => handleInitialAddToCart(item)}
-                            className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded-md focus:outline-none focus:shadow-outline"
+                            className="mt-2 bg-white hover:bg-[#FFA412] text-[#FFA412] hover:text-white py-1 px-3 rounded-md border-2 border-[#FFA412] cursor-pointer"
                           >
                             Add to Cart
                           </button>
@@ -116,15 +115,15 @@ const RestaurantDetails = () => {
                         <div className="flex items-center mt-2">
                           <button
                             onClick={() => handleDecrement(item)}
-                            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-l-md hover:bg-gray-300 focus:outline-none">
+                            className="bg-white text-red-500 px-3 py-1 hover:bg-red-500 hover:text-white border rounded-full">
                             -
                           </button>
-                          <span className="bg-gray-100 text-gray-800 px-4 py-1 border-t border-b border-gray-300">
+                          <span className="mx-4">
                             {currentQuantity}
                           </span>
                           <button
                             onClick={() => handleIncrement(item)}
-                            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-r-md hover:bg-gray-300 focus:outline-none">
+                            className="bg-white text-green-500 px-3 py-1 hover:bg-green-500 hover:text-white border rounded-full">
                             +
                           </button>
                         </div>

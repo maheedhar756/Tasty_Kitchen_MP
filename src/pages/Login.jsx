@@ -53,7 +53,7 @@ export default function Login() {
     return (
     <div className="h-screen w-full flex items-center justify-center">
       {/* Mobile view */}
-      <div className="relative flex flex-col md:hidden w-full h-screen items-center justify-center bg-gray-100">
+      <div className="lg:hidden relative flex flex-col max-md w-full h-screen items-center justify-center bg-gray-100">
         <img
           src="https://res.cloudinary.com/dzyaesd9l/image/upload/v1753196312/login_image_t58qdc.jpg"
           alt="Food"

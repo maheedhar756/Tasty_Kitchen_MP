@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useContext } from 'react'
+import { createContext, useState, useContext, useEffect } from 'react'
 
 const CartContext = createContext()
 
@@ -12,7 +12,19 @@ export const useCart = () => {
 }
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState(() => {
+    try{
+      const storedCart = sessionStorage.getItem('TastyKitchenCart');
+      return storedCart ? JSON.parse(storedCart) : [];
+    } catch(e){
+      console.log("Failed to retrieve cart items:", e);
+      return [];
+    }
+  })
+
+  useEffect(() => {
+    sessionStorage.setItem('TastyKitchenCart', JSON.stringify(cartItems))
+  }, [cartItems])
 
   const addItemToCart = (item) => {
     setCartItems(prevItems => {

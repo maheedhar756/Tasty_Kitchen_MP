@@ -17,7 +17,6 @@ export default function Navbar() {
     <nav className="bg-[#F8FAFC] shadow-md">
       <div className="max-w-auto">
         <div className="flex justify-between items-center px-20 py-3">
-          {/* Logo */}
           <Link
             to="/"
             className="flex items-center space-x-2 text-xl font-bold text-[#F7931E]"

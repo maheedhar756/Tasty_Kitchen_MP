@@ -4,10 +4,11 @@ import Navbar from '../components/Navbar'
 import OffersCarousel from '../components/OffersCarousel'
 import RestaurantCards from '../components/RestaurantCards'
 import Footer from '../components/Footer'
+import Loader from '../components/Loader'
 
 const Home = () => {
   const [restaurants, setRestaurants] = useState([])
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const [activePage, setActivePage] = useState(1)
   const limit = 9 // Number of restaurants per page
   const totalRestaurants = 29
@@ -28,8 +29,10 @@ const Home = () => {
         const response = await fetch(apiUrl, options)
         const data = await response.json()
         setRestaurants(data.restaurants)
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching restaurants:', error)
+        setLoading(false)
       }
     }
     fetchRestaurants()
@@ -56,6 +59,14 @@ const Home = () => {
       </div>
     )
   }
+  if(loading){
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    )
+  }
+
   return (
     <>
       <Navbar />
@@ -71,14 +82,18 @@ const Home = () => {
         {renderRestaurants()}
 
         <div className="flex items-center justify-center mt-8 space-x-4">
-          <button onClick={handlePrevPage}  className="px-3 py-1 border rounded disabled:opacity-50">
-            &lt;
+          <button onClick={handlePrevPage}  className="px-2 py-2 border border-[orange] rounded-full cursor-pointer hover:bg-[orange]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" className="h-6 w-6 text-[orange] hover:text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
           </button>
           <span className="font-semibold">
             {activePage} of {Math.ceil(totalRestaurants / limit)}
           </span>
-          <button onClick={handleNextPage} className="px-3 py-1 border rounded disabled:opacity-50">
-            &gt;
+          <button onClick={handleNextPage} className="px-2 py-2 border border-[orange] rounded-full cursor-pointer hover:bg-[orange]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" className="h-6 w-6 text-[orange] hover:text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
           </button>
         </div>
       </div>
