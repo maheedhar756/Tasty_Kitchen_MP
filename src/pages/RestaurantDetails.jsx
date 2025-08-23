@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import { FaStar } from "react-icons/fa"
 import Footer from '../components/Footer'
 import { useCart } from '../context/CartContext'
-import Loader from '../components/Loader'
+import Loader from '../components/loader'
 
 const RestaurantDetails = () => {
   const { restrauntId } = useParams()
