@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import OffersCarousel from '../components/OffersCarousel'
 import RestaurantCards from '../components/RestaurantCards'
 import Footer from '../components/Footer'
-import Loader from '../components/loader'
+import Loader from '../components/Loaders'
 
 const Home = () => {
   const [restaurants, setRestaurants] = useState([])
