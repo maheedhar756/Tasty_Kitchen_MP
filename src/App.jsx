@@ -7,14 +7,12 @@ import RestaurantDetails from './pages/RestaurantDetails'
 import NotFound from './pages/NotFound'
 import { CartProvider } from '../src/context/CartContext'
 import OrderPlaced from './pages/OrderPlaced'
-import { Analytics } from '@vercel/analytics/next'
 
 import './App.css'
 
 function App() {
 
   return (
-    <>
       <CartProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -25,8 +23,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </CartProvider>
-      <Analytics />
-    </>
   )
 }
 

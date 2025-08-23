@@ -5,10 +5,11 @@ import OrderPlaced from './OrderPlaced';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const { cartItems, incrementItemQuantity, decrementItemQuantity, calculateOrderTotal } = useCart();
+  const { cartItems, incrementItemQuantity, decrementItemQuantity, calculateOrderTotal, clearCart } = useCart();
 
   const handlePlaceOrder = () => {
     <OrderPlaced />
+    clearCart();
   };
 
   return (

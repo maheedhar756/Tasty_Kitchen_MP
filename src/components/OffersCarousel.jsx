@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import Slider from 'react-slick'
 import Cookies from 'js-cookie'
+import Loader from './Loaders'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 const OffersCarousel = () => {
   const [offers, setOffers] = useState([])
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchOffers = async () => {
@@ -18,12 +19,11 @@ const OffersCarousel = () => {
           },
         })
         const data = await response.json()
-        // console.log('API Response:', data)
         setOffers(data.offers || [])
-        // setLoading(false)
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching offers:', error)
-        // setLoading(false)
+        setLoading(false)
       }
     }
 
@@ -52,20 +52,20 @@ const OffersCarousel = () => {
     ]
   }
 
-  if (!offers || offers.length === 0) {
+  if (!offers || offers.length === 0 || loading) {
     return (
       <div className="w-full h-64 bg-gray-100 rounded-lg mb-8 flex items-center justify-center">
-        <div className="text-gray-500">No offers available</div>
+        {loading ? <Loader /> : <div className="text-gray-500">No offers available</div>}
       </div>
     )
   }
 
   return (
-    <div className="w-full mb-8 px-4">
+    <div className="w-full mb-8">
       <Slider {...settings}>
         {offers.map((offer) => (
           <div key={offer.id} className="outline-none">
-            <div className="relative h-64 md:h-80 rounded-lg overflow-hidden">
+            <div className="lg:flex relative h-auto md:h-80 rounded-lg overflow-hidden">
               <img
                 src={offer.image_url}
                 alt={`Offer ${offer.id}`}
