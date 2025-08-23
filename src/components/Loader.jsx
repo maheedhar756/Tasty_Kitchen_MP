@@ -1,18 +1,11 @@
-import { TailSpin } from 'react-loader-spinner'
+import { PropagateLoader } from "react-spinners";
 
 function Loader() {
   return (
-    <TailSpin
-      visible={true}
-      height="50"
-      width="50"
-      color="#F7931E"
-      ariaLabel="tail-spin-loading"
-      radius="1"
-      wrapperStyle={{}}
-      wrapperClass="flex items-center justify-center h-screen"
-    />
-  )
+    <div className="flex items-center justify-center h-screen">
+      <PropagateLoader color="#F7931E" />
+    </div>
+  );
 }
 
-export default Loader
+export default Loader;
