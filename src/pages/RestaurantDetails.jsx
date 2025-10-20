@@ -115,7 +115,7 @@ const RestaurantDetails = () => {
                         <div className="flex items-center mt-2">
                           <button
                             onClick={() => handleDecrement(item)}
-                            className="bg-white text-red-500 px-3 py-1 hover:bg-red-500 hover:text-white border rounded-full">
+                            className="bg-white text-red-500 px-3 py-1 hover:bg-red-500 hover:text-white border rounded-full cursor-pointer">
                             -
                           </button>
                           <span className="mx-4">
@@ -123,7 +123,7 @@ const RestaurantDetails = () => {
                           </span>
                           <button
                             onClick={() => handleIncrement(item)}
-                            className="bg-white text-green-500 px-3 py-1 hover:bg-green-500 hover:text-white border rounded-full">
+                            className="bg-white text-green-500 px-3 py-1 hover:bg-green-500 hover:text-white border rounded-full cursor-pointer">
                             +
                           </button>
                         </div>

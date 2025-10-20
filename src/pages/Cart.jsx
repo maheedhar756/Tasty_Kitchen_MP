@@ -40,7 +40,7 @@ const Cart = () => {
                 <div className="col-span-1 flex items-center justify-center">
                   <button
                     onClick={() => decrementItemQuantity(item.id)}
-                    className="bg-white text-red-500 px-3 py-1 hover:bg-red-500 hover:text-white border rounded-full"
+                    className="bg-white text-red-500 px-3 py-1 hover:bg-red-500 hover:text-white border rounded-full cursor-pointer"
                   >
                     -
                   </button>
@@ -49,7 +49,7 @@ const Cart = () => {
                   </span>
                   <button
                     onClick={() => incrementItemQuantity(item.id)}
-                    className="bg-white text-green-500 px-3 py-1 hover:bg-green-500 hover:text-white border rounded-full"
+                    className="bg-white text-green-500 px-3 py-1 hover:bg-green-500 hover:text-white border rounded-full cursor-pointer"
                   >
                     +
                   </button>
